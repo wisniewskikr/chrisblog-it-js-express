@@ -4,6 +4,7 @@ const messagesService = require('./services/messages-service');
 const port = 3000;
 
 const app = express();
+app.use(express.json());
 
 app.get("/api/v1/messages", (req, res) => {
   handleReadAll(res);
@@ -66,36 +67,16 @@ function handleRead(req, res) {
 
 function handleCreate(req, res) {
 
-  let body = '';
-  req.on('data', (chunk) => {
-      body += chunk;
-  });
-  req.on('end', () => {
-      const message = JSON.parse(body);
-      messagesService.add(message);
-      displayMessage(new Info('New Message was added'), res, 200); 
-  }); 
-  
+  messagesService.add(req.body);
+  displayMessage(new Info('New Message was added'), res, 200); 
 
 }
 
-function handleUpdate(req, res) {
-  
-  let body = '';
-  req.on('data', (chunk) => {
-      body += chunk;
-  });
-  req.on('end', () => {
-    const message = JSON.parse(body);
-    const messageCurrent = messagesService.getById(message.id);
-    if (!messageCurrent) {
-      displayMessage(new Info('Specific Message Not Found'), res, 200);
-      return; 
-    }
-    messagesService.update(message);
-    displayMessage(new Info('Message was updated'), res, 200);
-  });
+function handleUpdate(req, res) {    
 
+  messagesService.update(req.body);
+  displayMessage(new Info('Message was updated'), res, 200);
+  
 }
 
 function handleDelete(req, res) {
