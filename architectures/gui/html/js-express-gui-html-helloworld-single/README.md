@@ -10,6 +10,7 @@ Usage steps:
 1. In a command line tool init express with `npm i express`
 1. In a command line tool start application with `node app.js`
 1. In a http browser (e.g. Chrome) visit `http://localhost:3000`
+   * Expected **Hello World** page
 1. Clean up environment 
      * In a command line tool stop application with `ctrl + C`
 
@@ -17,26 +18,20 @@ Usage steps:
 USAGE IMAGES
 ------------
 
-Start application:
-
-![My Image](images/image-01.png)
-
-Display result:
-
-![My Image](images/image-02.png)
+![My Image](readme-images/image-01.png)
 
 
 DESCRIPTION
 -----------
 
 ##### Goal
-The goal of this project is to present how to create an application type **GUI HTML** in **JavaScript** programming language with usage **http** library. This application consists of **single** HTTP page and displays **Hello World** message.
+The goal of this project is to present how to create an application type **GUI HTML** in **JavaScript** programming language with usage **express** framework. This application consists of **single** HTTP page and displays **Hello World** message.
 
 ##### Terminology
 Terminology explanation:
 * **JavaScript**: is a scripting or programming language that allows you to implement complex features on web pages or to implement web applications.
 * **GUI HTML**: it's an abbreviation for Graphical User Interface. It enables user to interact with application. GUI HTML means that user interacts with application via html web pag.
-* **http library**: is JavaScript library which enables to start web server.
+* **Express framework**: Express.js is the most popular web framework for Node.js. It is designed for building web applications and APIs and has been called the de facto standard server framework for Node.js.
 
 ##### Flow
 The following flow takes place in this project:
@@ -50,6 +45,8 @@ To launch this application please make sure that the **Preconditions** are met a
 This project uses following technologies:
 * **JavaScript**: `https://docs.google.com/document/d/1wtk8TTIDLsHSvtyUp7uCk-pOKTpmNwMANRGmBNaoBpc/edit?usp=sharing`
 * **Node** (section 'Node'): `https://docs.google.com/document/d/1wtk8TTIDLsHSvtyUp7uCk-pOKTpmNwMANRGmBNaoBpc/edit?usp=sharing`
+* **Npm** (section 'Npm'): `https://docs.google.com/document/d/1wtk8TTIDLsHSvtyUp7uCk-pOKTpmNwMANRGmBNaoBpc/edit?usp=sharing`
+* **Express framework** (section 'Express Framework'): `https://docs.google.com/document/d/1wtk8TTIDLsHSvtyUp7uCk-pOKTpmNwMANRGmBNaoBpc/edit?usp=sharing`
 
 
 PRECONDITIONS
