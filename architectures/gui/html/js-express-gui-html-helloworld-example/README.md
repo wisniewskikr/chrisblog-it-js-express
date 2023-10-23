@@ -10,11 +10,11 @@ Usage steps:
 1. In a command line tool init express with `npm i express`
 1. In a command line tool start application with `node app.js`
 1. In a http browser (e.g. Chrome) visit `http://localhost:3000`
-   * Expected **Init** page
-1. In a http browser (e.g. Chrome) on **Init** page click **here** link
-   * Expected **Hello World** page
-1. In a http browser (e.g. Chrome) on **Hello World** page click **Back** link
-   * Expected **Init** page
+   * Expected **Hello World** page with "Name" field
+1. In a http browser (e.g. Chrome) fill **name** (e.g. Chris) and click **Create** link
+   * Expected message **Hello World Chris!**
+1. In a http browser (e.g. Chrome) click **Back** link
+   * Expected message **Hello World** page with "Name" field
 1. Clean up environment 
      * In a command line tool stop application with `ctrl + C`
 
@@ -26,14 +26,12 @@ USAGE IMAGES
 
 ![My Image](readme-images/image-02.png)
 
-![My Image](readme-images/image-03.png)
-
 
 DESCRIPTION
 -----------
 
 ##### Goal
-The goal of this project is to present how to create an application type **GUI HTML** in **JavaScript** programming language with usage **express** framework. This application consists of **multiple** HTML pages: first page **Init** contains link to second page and second page **Hello World** displays message.
+The goal of this project is to present how to create an **example** application type **GUI HTML** in **JavaScript** programming language with usage **express** framework. This application consists of HTML page which includes following frontend elements: **html**, **javascript**, **css** and **images**.
 
 ##### Terminology
 Terminology explanation:
@@ -43,10 +41,8 @@ Terminology explanation:
 
 ##### Flow
 The following flow takes place in this project:
-1. User via html browser sends request to application for Init page.
-1. Application sends back response to user via html browser with Init page.
-1. User via html browser sends request to application for Hello World page.
-1. Application sends back response to user via html browser with Hello World page.
+1. User via any html browser sends request to application for the content.
+1. Application sends back response to user via html browser with message
 
 ##### Launch
 To launch this application please make sure that the **Preconditions** are met and then follow instructions from **Usage** section.
