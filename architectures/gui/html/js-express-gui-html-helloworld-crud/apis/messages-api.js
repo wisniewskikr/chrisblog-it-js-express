@@ -10,7 +10,7 @@ module.exports = {
     },
     handleRead: function (req, res) {
 
-        const messageId = parseInt(req.url.split("/")[3]);
+        const messageId = parseInt(req.url.substring(req.url.lastIndexOf('/') + 1));
         if (isNaN(messageId)) {
             displayMessage(null, res, 404);
             return;
@@ -58,7 +58,7 @@ module.exports = {
     },
     handleDelete: function (req, res) {
 
-        const messageId = parseInt(req.url.split("/")[3]);
+        const messageId = parseInt(req.url.substring(req.url.lastIndexOf('/') + 1));
         if (isNaN(messageId)) {
             displayMessage(null, res, 404);
             return;

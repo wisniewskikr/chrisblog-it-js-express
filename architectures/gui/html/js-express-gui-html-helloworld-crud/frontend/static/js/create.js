@@ -7,10 +7,10 @@ $( document ).ready(function() {
         let json = JSON.parse(`{"id": ${id}, "text": "${text}"}`);
 
         $.post( 
-            "http://localhost:3000/api/create", 
+            "api/v1/messages", 
             JSON.stringify(json),
             function (data) {
-                window.location.replace("http://localhost:3000/");
+                window.location.replace("/");
             }
         );
         

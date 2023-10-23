@@ -1,6 +1,6 @@
 $( document ).ready(function() {
     
-    $.get( "http://localhost:3000/api/", function( data ) {
+    $.get( "api/v1/messages", function( data ) {
 
         if (data.length == 0) {
             displayEmptyMessage();
@@ -40,9 +40,9 @@ function handleRadioClick() {
     $("#menu-links").show(); 
     
     let id = $('input[type="radio"]:checked').val();
-    $("#view-link").attr("href", "http://localhost:3000/view?id=" + id);
-    $("#create-link").attr("href", "http://localhost:3000/create");
-    $("#update-link").attr("href", "http://localhost:3000/update?id=" + id);
-    $("#delete-link").attr("href", "http://localhost:3000/delete?id=" + id);
+    $("#view-link").attr("href", "/view?id=" + id);
+    $("#create-link").attr("href", "/create");
+    $("#update-link").attr("href", "/update?id=" + id);
+    $("#delete-link").attr("href", "/delete?id=" + id);
     
 }
