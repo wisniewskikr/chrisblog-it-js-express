@@ -6,8 +6,8 @@ USAGE COMMANDS
 > Please **clone/download** project, open **project's main folder** in your favorite **command line tool** and then **proceed with steps below**. 
 
 Usage steps:
-1. (Optional) In a command line tool init nmp with `npm init -y`
-1. (Optional) In a command line tool init express with `npm i express`
+1. In a command line tool init nmp with `npm init -y`
+1. In a command line tool init express with `npm i express`
 1. In a command line tool start application with `node app.js`
 1. In a http client (e.g. Postman) use **POST** method and visit `http://localhost:3000/api/v1/messages`
    * Choose **Body -> raw -> JSON** and add following JSON:
