@@ -27,7 +27,7 @@ app.delete("/api/v1/messages/*", (req, res) => {
 })
 
 app.all("*", (req, res) => {
-  displayMessage(new Info('Error: Resource Not Found'), res, 404);
+  displayMessage(new Info('Error: Resource Not Found. Please use following API path: /api/v1/messages'), res, 404);
 })
 
 app.listen(port, function(error) {
@@ -76,7 +76,7 @@ function handleUpdate(req, res) {
 
   messagesService.update(req.body);
   displayMessage(new Info('Message was updated'), res, 200);
-  
+
 }
 
 function handleDelete(req, res) {
