@@ -4,7 +4,8 @@ const messagesApi = require('./apis/messages-api');
 const port = 3000;
 
 const app = express();
-app.use("/static", express.static(path.resolve(__dirname, "frontend", "static")))
+app.use(express.json());
+app.use("/static", express.static(path.resolve(__dirname, "frontend", "static")));
 
 // API //
 app.get("/api/v1/messages", (req, res) => {

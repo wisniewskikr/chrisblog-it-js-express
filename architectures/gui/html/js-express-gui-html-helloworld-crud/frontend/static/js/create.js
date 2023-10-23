@@ -6,13 +6,15 @@ $( document ).ready(function() {
         let text = $('#text').val();
         let json = JSON.parse(`{"id": ${id}, "text": "${text}"}`);
 
-        $.post( 
-            "api/v1/messages", 
-            JSON.stringify(json),
-            function (data) {
+        $.ajax({
+            url: 'api/v1/messages',
+            type: 'POST',
+            data: JSON.stringify(json),
+            contentType: "application/json",
+            success: function(result) {
                 window.location.replace("/");
             }
-        );
+        });
         
     });
     

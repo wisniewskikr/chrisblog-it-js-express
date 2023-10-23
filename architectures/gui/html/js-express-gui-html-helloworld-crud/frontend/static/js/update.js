@@ -20,6 +20,7 @@ $( document ).ready(function() {
             url: 'api/v1/messages',
             type: 'PUT',
             data: JSON.stringify(json),
+            contentType: "application/json",
             success: function(result) {
                 window.location.replace("/");
             }

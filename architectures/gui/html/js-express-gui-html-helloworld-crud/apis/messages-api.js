@@ -27,33 +27,14 @@ module.exports = {
     },
     handleCreate: function (req, res) {
 
-        let body = '';
-        req.on('data', (chunk) => {
-            body += chunk;
-        });
-        req.on('end', () => {
-            const message = JSON.parse(body);
-            messagesService.add(message);
-            displayMessage(null, res, 200);
-        });
+        messagesService.add(req.body);
+        displayMessage(null, res, 200);
 
     },
     handleUpdate: function (req, res) {
 
-        let body = '';
-        req.on('data', (chunk) => {
-            body += chunk;
-        });
-        req.on('end', () => {
-            const message = JSON.parse(body);
-            const messageCurrent = messagesService.getById(message.id);
-            if (!messageCurrent) {
-            displayMessage(null, res, 404);
-            return; 
-            }
-            messagesService.update(message);
-            displayMessage(null, res, 200);
-        });
+        messagesService.update(req.body);
+        displayMessage(null, res, 200);
 
     },
     handleDelete: function (req, res) {
