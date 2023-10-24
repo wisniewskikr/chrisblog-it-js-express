@@ -1,9 +1,11 @@
 const express = require('express');
-const { authPage } = require('./middlewares');
+const { authPage, createToken } = require('./middlewares');
 const port = 3000;
 
 const app = express();
 app.use(express.json())
+
+app.get("/token", createToken)
 
 app.get("/", (req, res) => {
   res.json(JSON.parse('{"message": "Hello World"}'))
