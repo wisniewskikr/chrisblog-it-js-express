@@ -6,15 +6,15 @@ const app = express();
 app.use(express.json())
 
 app.get("/", (req, res) => {
-  res.json(JSON.parse('{"message": "Public Resource"}'))
+  res.json(JSON.parse('{"message": "Hello World"}'))
 })
 
 app.get("/user", authPage(["USER", "ADMIN"]), (req, res) => {
-  res.json(JSON.parse('{"message": "User Resource"}'))
+  res.json(JSON.parse('{"message": "Hello World User"}'))
 })
 
 app.get("/admin", authPage(["ADMIN"]), (req, res) => {
-  res.json(JSON.parse('{"message": "Admin Resource"}'))
+  res.json(JSON.parse('{"message": "Hello World Admin"}'))
 })
 
 app.all('*', function(req, res) {
