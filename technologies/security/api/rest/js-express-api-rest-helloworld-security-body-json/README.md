@@ -9,23 +9,65 @@ Usage steps:
 1. In a command line tool init nmp with `npm init -y`
 1. In a command line tool init express with `npm i express`
 1. In a command line tool start application with `node app.js`
-1. In a http client (e.g. Postman) use **GET** method and **without any role** (authorization: **No Auth**, credentials: **none**) visit **public** page `http://localhost:3000`
+1. In a http client (e.g. Postman) use **POST** method and **without any role** visit **public** page `http://localhost:3000`
    * Expected message **Hello World**
-1. In a http client (e.g. Postman) use **GET** method and **without any role** (authorization: **No Auth**, credentials: **none**) visit **user** page `http://localhost:3000/user`
+1. In a http client (e.g. Postman) use **POST** method and **without any role** visit **user** page `http://localhost:3000/user`
    * Expected message **Unauthorized for this Resource**
-1. In a http client (e.g. Postman) use **GET** method and **without any role** (authorization: **No Auth**, credentials: **none**) visit **admin** page `http://localhost:3000/admin`
+1. In a http client (e.g. Postman) use **POST** method and **without any role** visit **admin** page `http://localhost:3000/admin`
    * Expected message **Unauthorized for this Resource**
-1. In a http client (e.g. Postman) use **GET** method and **USER role** (authorization: **Basic Auth**, credentials: **user/user123**) visit **public** page `http://localhost:3000`
+1. In a http client (e.g. Postman) use **POST** method and **USER role** visit **public** page `http://localhost:3000`
+      * Choose **Body -> raw -> JSON** and add following JSON:
+   ```
+   {
+    "username": "user",
+    "password": "user123"
+   }
+   ```
    * Expected message **Hello World**
-1. In a http client (e.g. Postman) use **GET** method and **USER role** (authorization: **Basic Auth**, credentials: **user/user123**) visit **user** page `http://localhost:3000/user`
+1. In a http client (e.g. Postman) use **POST** method and **USER role** visit **user** page `http://localhost:3000/user`
+      * Choose **Body -> raw -> JSON** and add following JSON:
+   ```
+   {
+    "username": "user",
+    "password": "user123"
+   }
+   ```
    * Expected message **Hello World User**
-1. In a http client (e.g. Postman) use **GET** method and **USER role** (authorization: **Basic Auth**, credentials: **user/user123**) visit **admin** page `http://localhost:3000/admin`
+1. In a http client (e.g. Postman) use **POST** method and **USER role** visit **admin** page `http://localhost:3000/admin`
+      * Choose **Body -> raw -> JSON** and add following JSON:
+   ```
+   {
+    "username": "user",
+    "password": "user123"
+   }
+   ```
    * Expected message **Unauthorized for this Resource**
-1. In a http client (e.g. Postman) use **GET** method and **ADMIN role** (authorization: **Basic Auth**, credentials: **admin/admin123**) visit **public** page `http://localhost:3000`
+1. In a http client (e.g. Postman) use **POST** method and **ADMIN role** visit **public** page `http://localhost:3000`
+      * Choose **Body -> raw -> JSON** and add following JSON:
+   ```
+   {
+    "username": "admin",
+    "password": "admin123"
+   }
+   ```
    * Expected message **Hello World**
-1. In a http client (e.g. Postman) use **GET** method and **ADMIN role** (authorization: **Basic Auth**, credentials: **admin/admin123**) visit **user** page `http://localhost:3000/user`
+1. In a http client (e.g. Postman) use **POST** method and **ADMIN role** visit **user** page `http://localhost:3000/user`
+      * Choose **Body -> raw -> JSON** and add following JSON:
+   ```
+   {
+    "username": "admin",
+    "password": "admin123"
+   }
+   ```
    * Expected message **Hello World User**
-1. In a http client (e.g. Postman) use **GET** method and **ADMIN role** (authorization: **Basic Auth**, credentials: **admin/admin123**) visit **admin** page `http://localhost:3000/admin`
+1. In a http client (e.g. Postman) use **POST** method and **ADMIN role** visit **admin** page `http://localhost:3000/admin`
+      * Choose **Body -> raw -> JSON** and add following JSON:
+   ```
+   {
+    "username": "admin",
+    "password": "admin123"
+   }
+   ```
    * Expected message **Hello World Admin**
 1. Clean up environment 
      * In a command line tool stop application with `ctrl + C`
@@ -57,7 +99,7 @@ DESCRIPTION
 -----------
 
 ##### Goal
-The goal of this project is to present how to **secure** using **Basic Authentication** an example application type **API REST** in **JavaScript** programming language with usage **express** framework. This application consists of three API endpoints: one public, one available for USER and ADMIN roles and one available only for ADMIN role. 
+The goal of this project is to present how to **secure** using **JSON body** an example application type **API REST** in **JavaScript** programming language with usage **express** framework. This application consists of three API endpoints: one public, one available for USER and ADMIN roles and one available only for ADMIN role. 
 
 ##### Terminology
 Terminology explanation:
