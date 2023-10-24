@@ -9,18 +9,24 @@ Usage steps:
 1. In a command line tool init nmp with `npm init -y`
 1. In a command line tool init express with `npm i express`
 1. In a command line tool start application with `node app.js`
-1. In a http client (e.g. Postman) use **GET** method and visit `http://localhost:3000`
-   * Expected message: **Please use following URL structure: http://localhost:3000/name/{name} or http://localhost:3000/name/{name}?contentType=json**
-1. In a http client (e.g. Postman) use **GET** method and visit `http://localhost:3000/name/{name}` (e.g. `http://localhost:3000/name/Chris`)
-   * Expected message: **Hello World Chris. Used HTTP method: get. Content type: plain**
-1. In a http client (e.g. Postman) use **GET** method and visit `http://localhost:3000/name/{name}?contentType=json` (e.g. `http://localhost:3000/name/Chris?contentType=json`)
-   * Expected message:
-   ```
-     {
-          "message": "Hello World Chris. Used HTTP method: get. Content type: json"
-     }  
-
-   ```
+1. In a http client (e.g. Postman) use **GET** method and **without any role** (authorization: **No Auth**, credentials: **none**) visit **public** page `http://localhost:3000`
+   * Expected message **Hello World**
+1. In a http client (e.g. Postman) use **GET** method and **without any role** (authorization: **No Auth**, credentials: **none**) visit **user** page `http://localhost:3000/user`
+   * Expected message **Unauthorized for this Resource**
+1. In a http client (e.g. Postman) use **GET** method and **without any role** (authorization: **No Auth**, credentials: **none**) visit **admin** page `http://localhost:3000/admin`
+   * Expected message **Unauthorized for this Resource**
+1. In a http client (e.g. Postman) use **GET** method and **USER role** (authorization: **Basic Auth**, credentials: **user/user123**) visit **public** page `http://localhost:3000`
+   * Expected message **Hello World**
+1. In a http client (e.g. Postman) use **GET** method and **USER role** (authorization: **Basic Auth**, credentials: **user/user123**) visit **user** page `http://localhost:3000/user`
+   * Expected message **Hello World User**
+1. In a http client (e.g. Postman) use **GET** method and **USER role** (authorization: **Basic Auth**, credentials: **user/user123**) visit **admin** page `http://localhost:3000/admin`
+   * Expected message **Unauthorized for this Resource**
+1. In a http client (e.g. Postman) use **GET** method and **ADMIN role** (authorization: **Basic Auth**, credentials: **admin/admin123**) visit **public** page `http://localhost:3000`
+   * Expected message **Hello World**
+1. In a http client (e.g. Postman) use **GET** method and **ADMIN role** (authorization: **Basic Auth**, credentials: **admin/admin123**) visit **user** page `http://localhost:3000/user`
+   * Expected message **Hello World User**
+1. In a http client (e.g. Postman) use **GET** method and **ADMIN role** (authorization: **Basic Auth**, credentials: **admin/admin123**) visit **admin** page `http://localhost:3000/admin`
+   * Expected message **Hello World Admin**
 1. Clean up environment 
      * In a command line tool stop application with `ctrl + C`
 
@@ -34,12 +40,24 @@ USAGE IMAGES
 
 ![My Image](readme-images/image-03.png)
 
+![My Image](readme-images/image-04.png)
+
+![My Image](readme-images/image-05.png)
+
+![My Image](readme-images/image-06.png)
+
+![My Image](readme-images/image-07.png)
+
+![My Image](readme-images/image-08.png)
+
+![My Image](readme-images/image-09.png)
+
 
 DESCRIPTION
 -----------
 
 ##### Goal
-The goal of this project is to present how to create an example application type **API REST** in **JavaScript** programming language with usage **express** framework. This application consists of **single** API endpoint and displays **Hello World** message with user **name** and HTTP **method**. Moreover this application can display result in **plain** or **json** format.
+The goal of this project is to present how to **secure** using **Basic Authentication** an example application type **API REST** in **JavaScript** programming language with usage **express** framework. This application consists of three API endpoints: one public, one available for USER and ADMIN roles and one available only for ADMIN role. 
 
 ##### Terminology
 Terminology explanation:
@@ -50,7 +68,7 @@ Terminology explanation:
 ##### Flow
 The following flow takes place in this project:
 1. User via any http client sends request to application for the content.
-1. Application sends back response to user via http client with message.
+1. Application sends back response to user via http client with message. This message depends on wheter the user has a proper role for this resource or not.
 
 ##### Launch
 To launch this application please make sure that the **Preconditions** are met and then follow instructions from **Usage** section.
