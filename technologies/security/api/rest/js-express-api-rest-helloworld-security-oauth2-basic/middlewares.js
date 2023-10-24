@@ -14,32 +14,49 @@ const createToken = (req, res, next) => {
         res.status(401).json(JSON.parse('{"message": "Unauthorized for token"}'))
     } else {
         const token = buildToken( roles )
-        res.json(JSON.parse( `{"token": "${token}"}` ))
+        res.locals.token = token
+        next()
     }    
 
-}
+};
 
 const authPage = (permissions) => {
 
     return (req, res, next) => {
 
-        const b64auth = (req.headers.authorization || '').split(' ')[1] || ''
-        const strauth = Buffer.from(b64auth, 'base64').toString()
-        const splitIndex = strauth.indexOf(':')
-        const username = strauth.substring(0, splitIndex)
-        const password = strauth.substring(splitIndex + 1)
-        const roles = getRolesByUsernameAndPassword(username, password)
+        let roles = null;
+        
+        const token = getTokenFromReq(req);
+        if (!token) {
+            res.status(401).json(JSON.parse('{"message": "Unauthorized for this Resource"}'))
+        }
+
+        jwt.verify(token, 'secret', (err, authData) => {
+            if(err) {
+                res.status(401).json(JSON.parse('{"message": "Unauthorized for this Resource"}'))
+            } else {
+                roles = authData.roles
+            }
+        })
+
         const found = ( roles == null) ? false : permissions.some(r=> roles.includes(r))
 
         if ( !found ) {
             res.status(401).json(JSON.parse('{"message": "Unauthorized for this Resource"}'))
         } else {
             next()
-        }        
+        }
 
     }
 
-}
+};
+
+const maxAge = 1 * 24 * 60 * 60;
+const buildToken = (roles) => {
+  return jwt.sign({ roles }, 'secret', {
+    expiresIn: maxAge
+  });
+};
 
 function getRolesByUsernameAndPassword(username, password) {
 
@@ -51,11 +68,9 @@ function getRolesByUsernameAndPassword(username, password) {
 
 }
 
-const maxAge = 1 * 24 * 60 * 60;
-const buildToken = (roles) => {
-  return jwt.sign({ roles }, 'secret', {
-    expiresIn: maxAge
-  });
-};
+function getTokenFromReq(req) {
+    const bearerHeader = req.headers['authorization'];
+    return (typeof bearerHeader !== 'undefined') ? bearerHeader.split(' ')[1] : null ;
+}
 
 module.exports = { authPage, createToken };

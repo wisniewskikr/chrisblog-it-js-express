@@ -5,7 +5,10 @@ const port = 3000;
 const app = express();
 app.use(express.json())
 
-app.get("/token", createToken)
+app.get("/token", createToken, (req, res) => {
+  const token = res.locals.token
+  res.json(JSON.parse( `{"token": "${token}"}` ))
+})
 
 app.get("/", (req, res) => {
   res.json(JSON.parse('{"message": "Hello World"}'))
