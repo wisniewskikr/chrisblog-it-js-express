@@ -1,5 +1,7 @@
 const jwt = require('jsonwebtoken');
-const db = '[{"username": "user", "password": "user123", "roles": ["USER"]}, {"username": "admin", "password": "admin123", "roles": ["USER", "ADMIN"]}]'
+const db = '[{"username": "user", "password": "user123", "roles": ["USER"]}, {"username": "admin", "password": "admin123", "roles": ["USER", "ADMIN"]}]';
+const maxAge = 1 * 24 * 60 * 60;
+const secret = "secret";
 
 const createToken = (req, res, next) => {
 
@@ -29,11 +31,13 @@ const authPage = (permissions) => {
         const token = getTokenFromReq(req);
         if (!token) {
             res.status(401).json(JSON.parse('{"message": "Unauthorized for this Resource"}'))
+            return;
         }
 
-        jwt.verify(token, 'secret', (err, authData) => {
+        jwt.verify(token, `${secret}`, (err, authData) => {
             if(err) {
                 res.status(401).json(JSON.parse('{"message": "Unauthorized for this Resource"}'))
+                return;
             } else {
                 roles = authData.roles
             }
@@ -43,6 +47,7 @@ const authPage = (permissions) => {
 
         if ( !found ) {
             res.status(401).json(JSON.parse('{"message": "Unauthorized for this Resource"}'))
+            return;
         } else {
             next()
         }
@@ -51,12 +56,13 @@ const authPage = (permissions) => {
 
 };
 
-const maxAge = 1 * 24 * 60 * 60;
-const buildToken = (roles) => {
-  return jwt.sign({ roles }, 'secret', {
+function buildToken (roles) {
+
+  return jwt.sign({ roles }, `${secret}`, {
     expiresIn: maxAge
   });
-};
+
+}
 
 function getRolesByUsernameAndPassword(username, password) {
 
@@ -69,8 +75,10 @@ function getRolesByUsernameAndPassword(username, password) {
 }
 
 function getTokenFromReq(req) {
+
     const bearerHeader = req.headers['authorization'];
     return (typeof bearerHeader !== 'undefined') ? bearerHeader.split(' ')[1] : null ;
+
 }
 
 module.exports = { authPage, createToken };
