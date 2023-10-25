@@ -23,7 +23,8 @@ const authPage = (permissions) => {
             const found = ( roles == null) ? false : permissions.some(r=> roles.includes(r))
 
             if ( !found ) {
-                res.status(401).json(JSON.parse('{"message": "Unauthorized for this Resource"}'))
+                res.redirect('/401')
+                // next()
             } else {
                 next()
             } 

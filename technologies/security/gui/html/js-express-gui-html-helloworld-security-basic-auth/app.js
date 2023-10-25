@@ -22,6 +22,10 @@ app.get("/admin", authPage(["ADMIN"]), (req, res) => {
   res.sendFile(path.resolve(__dirname, "frontend/html", "admin.html"));
 })
 
+app.get("/401", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "frontend/html", "401.html"));
+})
+
 app.all("*", (req, res) => {
   res.sendFile(path.resolve("frontend/html", "404.html"));
 })
