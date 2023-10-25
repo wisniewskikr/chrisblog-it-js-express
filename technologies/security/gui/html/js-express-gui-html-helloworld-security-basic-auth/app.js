@@ -13,6 +13,14 @@ app.get("/public", (req, res) => {
   res.sendFile(path.resolve(__dirname, "frontend/html", "public.html"));
 })
 
+app.get("/user", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "frontend/html", "user.html"));
+})
+
+app.get("/admin", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "frontend/html", "admin.html"));
+})
+
 app.all("*", (req, res) => {
   res.sendFile(path.resolve("frontend/html", "404.html"));
 })
