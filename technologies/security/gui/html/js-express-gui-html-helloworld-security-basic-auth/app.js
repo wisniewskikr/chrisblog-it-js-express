@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const { authPage } = require('./middlewares/auth-middleware');
 const port = 3000;
 
 const app = express();
@@ -13,11 +14,11 @@ app.get("/public", (req, res) => {
   res.sendFile(path.resolve(__dirname, "frontend/html", "public.html"));
 })
 
-app.get("/user", (req, res) => {
+app.get("/user", authPage(["USER", "ADMIN"]), (req, res) => {
   res.sendFile(path.resolve(__dirname, "frontend/html", "user.html"));
 })
 
-app.get("/admin", (req, res) => {
+app.get("/admin", authPage(["ADMIN"]), (req, res) => {
   res.sendFile(path.resolve(__dirname, "frontend/html", "admin.html"));
 })
 
