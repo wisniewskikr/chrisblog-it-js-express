@@ -64,6 +64,7 @@ Terminology explanation:
 * **JavaScript**: is a scripting or programming language that allows you to implement complex features on web pages or to implement web applications.
 * **API REST**: an architectural style for an application program interface (API) that uses HTTP requests to access and use data
 * **Express framework**: Express.js is the most popular web framework for Node.js. It is designed for building web applications and APIs and has been called the de facto standard server framework for Node.js.
+* **Basic Authentication**: Basic Authentication means that encoded by Base64 credentials - username and password - are sent in request header 'authorization'
 
 ##### Flow
 The following flow takes place in this project:
