@@ -9,7 +9,11 @@ Usage steps:
 1. In a command line tool install nmp packages with `npm install`
 1. In a command line tool start application with `node app.js`
 1. In a http browser (e.g. Chrome) visit `http://localhost:3000`
-   * Expected **Hello World** page
+   * Expected **Hello World** page with "Name" field
+1. In a http browser (e.g. Chrome) fill **name** (e.g. Chris) and click **Create** link
+   * Expected message **Hello World Chris!**
+1. In a http browser (e.g. Chrome) click **Back** link
+   * Expected message **Hello World** page with "Name" field
 1. Clean up environment 
      * In a command line tool stop application with `ctrl + C`
 
@@ -19,12 +23,14 @@ USAGE IMAGES
 
 ![My Image](readme-images/image-01.png)
 
+![My Image](readme-images/image-02.png)
+
 
 DESCRIPTION
 -----------
 
 ##### Goal
-The goal of this project is to present how to create an application type **GUI HTML** in **JavaScript** programming language with usage **express** framework and **ejs** template engine. This application consists of **single** HTTP page and displays **Hello World** message.
+The goal of this project is to present how to create an **form** application type **GUI HTML** in **JavaScript** programming language with usage **express** framework and **ejs** template engine. Form application means that HTML page contains form which is sent to server. This application consists of HTML page which includes following frontend elements: **html**, **javascript**, **css** and **images**.
 
 ##### Terminology
 Terminology explanation:

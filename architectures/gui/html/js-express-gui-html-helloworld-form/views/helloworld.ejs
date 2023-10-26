@@ -3,9 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello World</title>
+    <title>Hello World</title>    
+    <link rel="stylesheet" href="/css/helloworld.css"></link>
 </head>
 <body>
-    <div>Hello World!</div>
+    <div>
+        <img src="/images/helloworld.jpg" alt="Hello World"/>
+    </div>
+    <form method="POST">
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name"/>
+        </div>
+    </form>
+    <% if (name) { %>
+    <div id="message">
+        <span id="message-text">Hello World <%= name %>!</span>
+    </div>
+    <% } %>    
+    <div>
+        <% if (name) { %>
+            <a id="back-link" href="/">Back</a>
+        <% } else { %> 
+            <a id="create-link" href="#">Create</a>
+        <% } %> 
+        
+    </div>
 </body>
 </html>
+
+<script src="/js/helloworld.js"></script>
