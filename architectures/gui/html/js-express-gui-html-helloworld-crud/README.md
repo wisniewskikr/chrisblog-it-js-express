@@ -6,8 +6,7 @@ USAGE COMMANDS
 > Please **clone/download** project, open **project's main folder** in your favorite **command line tool** and then **proceed with steps below**. 
 
 Usage steps:
-1. In a command line tool init nmp with `npm init -y`
-1. In a command line tool init express with `npm i express`
+1. In a command line tool install nmp packages with `npm install`
 1. In a command line tool start application with `node app.js`
 1. In a html browser (e.g. Chrome) visit `http://localhost:3000`
    * Expected **List Messages** page with empty list
