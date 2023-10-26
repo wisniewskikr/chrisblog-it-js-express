@@ -26,6 +26,7 @@ app.delete("/api/v1/messages/*", (req, res) => {
 
 // GUI //
 app.get("/", (req, res) => {
+  res.locals.messages = messagesService.getAll();
   res.render('list')
 })
 app.get("/view", (req, res) => {

@@ -3,9 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>List Messages</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="/js/list.js"></script>
+    <title>List Messages</title>    
 </head>
 <body>
     <h4>List Messages</h4>
@@ -16,14 +14,25 @@
         <span>Delete</span>
     </div>
     <div id="menu-links" hidden>
-        <a href="#" id="create-link">Create</a>
+        <a href="/create" id="create-link">Create</a>
         <a href="#" id="view-link">View</a>        
         <a href="#" id="update-link">Update</a>
         <a href="#" id="delete-link">Delete</a>
     </div>
-    <div>
-        <ul id="messages" hidden></ul>
-        <p id="empty" hidden></p>
+    <div> 
+        <% if (messages.length != 0) { %>
+            <ul id="messages">
+                <% for (var i = 0; i < messages.length;  i++ ) { %>
+                    <input type='radio' name='messages' value='<%= messages[i].id %>' ><%= messages[i].text %></input>                   
+                <% } %>
+            </ul>
+        <% } else { %>
+            <p id="empty">There is no messages yet</p>
+        <% } %>
+        
+        
     </div>
 </body>
 </html>
+
+<script src="/js/list.js"></script>
