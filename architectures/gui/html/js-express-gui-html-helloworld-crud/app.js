@@ -1,10 +1,12 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const messagesApi = require('./apis/messages-api');
 const messagesService = require('./services/messages-service');
 const port = 3000;
 
 const app = express();
 app.use(express.json());
+app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static('static'));
 app.set('view engine', 'ejs');
 
@@ -15,9 +17,6 @@ app.get("/api/v1/messages", (req, res) => {
 app.get("/api/v1/messages/*", (req, res) => {
   messagesApi.handleRead(req, res);
 })
-// app.post("/api/v1/messages", (req, res) => {
-//   messagesApi.handleCreate(req, res);
-// })
 app.put("/api/v1/messages", (req, res) => {
   messagesApi.handleUpdate(req, res);
 })
@@ -59,10 +58,6 @@ app.listen(port, function(error) {
 // ***** HELP METHODS ***** //
 
 function create(req, res) {
-  // console.log(req);
-  // console.log(req.body);
-  console.log(req.query.text);
-  console.log(req.body.text);
   messagesService.add(req.body);
   res.redirect('/');
 }

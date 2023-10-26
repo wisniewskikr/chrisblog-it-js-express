@@ -25,12 +25,6 @@ module.exports = {
         displayMessage(message, res, 200);
 
     },
-    handleCreate: function (req, res) {
-
-        messagesService.add(req.body);
-        displayMessage(null, res, 200);
-
-    },
     handleUpdate: function (req, res) {
 
         messagesService.update(req.body);
