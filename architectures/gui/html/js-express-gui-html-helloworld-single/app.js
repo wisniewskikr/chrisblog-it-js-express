@@ -1,11 +1,12 @@
 const express = require('express');
-const path = require('path');
 const port = 3000;
 
 const app = express();
+app.use(express.static('static'));
+app.set('view engine', 'ejs');
 
 app.get("/", (req, res) => {
-  res.sendFile(path.resolve("frontend/html", "helloworld.html"));
+  res.render('helloworld')
 })
 
 app.listen(port, function(error) {

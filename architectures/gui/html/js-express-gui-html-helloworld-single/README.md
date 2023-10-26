@@ -24,13 +24,14 @@ DESCRIPTION
 -----------
 
 ##### Goal
-The goal of this project is to present how to create an application type **GUI HTML** in **JavaScript** programming language with usage **express** framework. This application consists of **single** HTTP page and displays **Hello World** message.
+The goal of this project is to present how to create an application type **GUI HTML** in **JavaScript** programming language with usage **express** framework and **ejs** template engine. This application consists of **single** HTTP page and displays **Hello World** message.
 
 ##### Terminology
 Terminology explanation:
 * **JavaScript**: is a scripting or programming language that allows you to implement complex features on web pages or to implement web applications.
 * **GUI HTML**: it's an abbreviation for Graphical User Interface. It enables user to interact with application. GUI HTML means that user interacts with application via html web pag.
 * **Express framework**: Express.js is the most popular web framework for Node.js. It is designed for building web applications and APIs and has been called the de facto standard server framework for Node.js.
+* **Ejs**: Ejs is template engine that lets you generate HTML markup with plain JavaScript. In other words it generates HTML pages on server side so you can fill this page with data on server side instead of client side.
 
 ##### Flow
 The following flow takes place in this project:
