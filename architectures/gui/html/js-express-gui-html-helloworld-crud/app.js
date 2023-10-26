@@ -1,11 +1,11 @@
 const express = require('express');
-const path = require('path');
 const messagesApi = require('./apis/messages-api');
 const port = 3000;
 
 const app = express();
 app.use(express.json());
-app.use("/static", express.static(path.resolve(__dirname, "frontend", "static")));
+app.use(express.static('static'));
+app.set('view engine', 'ejs');
 
 // API //
 app.get("/api/v1/messages", (req, res) => {
@@ -26,22 +26,22 @@ app.delete("/api/v1/messages/*", (req, res) => {
 
 // GUI //
 app.get("/", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "frontend/html", "list.html"));
+  res.render('list')
 })
 app.get("/view", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "frontend/html", "view.html"));
+  res.render('view')
 })
 app.get("/create", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "frontend/html", "create.html"));
+  res.render('create')
 })
 app.get("/update", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "frontend/html", "update.html"));
+  res.render('update')
 })
 app.get("/delete", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "frontend/html", "delete.html"));
+  res.render('delete')
 })
 app.all("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "frontend/html", "404.html"));
+  res.render('404')
 })
 
 app.listen(port, function(error) {
