@@ -1,5 +1,6 @@
 const express = require('express');
 const messagesApi = require('./apis/messages-api');
+const messagesService = require('./services/messages-service');
 const port = 3000;
 
 const app = express();
@@ -14,9 +15,9 @@ app.get("/api/v1/messages", (req, res) => {
 app.get("/api/v1/messages/*", (req, res) => {
   messagesApi.handleRead(req, res);
 })
-app.post("/api/v1/messages", (req, res) => {
-  messagesApi.handleCreate(req, res);
-})
+// app.post("/api/v1/messages", (req, res) => {
+//   messagesApi.handleCreate(req, res);
+// })
 app.put("/api/v1/messages", (req, res) => {
   messagesApi.handleUpdate(req, res);
 })
@@ -33,6 +34,9 @@ app.get("/view", (req, res) => {
 })
 app.get("/create", (req, res) => {
   res.render('create')
+})
+app.post("/create", (req, res) => {
+  create(req, res);
 })
 app.get("/update", (req, res) => {
   res.render('update')
@@ -51,3 +55,14 @@ app.listen(port, function(error) {
     console.log('Server is listening on port ' + port)
   }
 });
+
+// ***** HELP METHODS ***** //
+
+function create(req, res) {
+  // console.log(req);
+  // console.log(req.body);
+  console.log(req.query.text);
+  console.log(req.body.text);
+  messagesService.add(req.body);
+  res.redirect('/');
+}
