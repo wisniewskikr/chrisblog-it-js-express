@@ -26,10 +26,10 @@ app.get("/view", (req, res) => {
   view(req, res);
 })
 app.get("/create", (req, res) => {
-  res.render('create')
+  createDisplay(req, res);
 })
 app.post("/create", (req, res) => {
-  create(req, res);
+  createHandle(req, res);
 })
 app.get("/update", (req, res) => {
   res.render('update')
@@ -74,7 +74,11 @@ function view(req, res) {
   res.render('view');
 }
 
-function create(req, res) {
+function createDisplay(req, res) {
+  res.render('create');
+}
+
+function createHandle(req, res) {
   messagesService.add(req.body);
   res.redirect('/');
 }
