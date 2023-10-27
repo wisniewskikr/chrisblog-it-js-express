@@ -1,7 +1,7 @@
 const express = require('express');
 const session = require('express-session');
 const bodyParser = require('body-parser');
-const { authPage } = require('./middlewares/auth-middleware');
+const { login, authPage } = require('./middlewares/auth-middleware');
 const port = 3000;
 
 const app = express();
@@ -61,5 +61,5 @@ function displayLogin(req, res) {
 }
 
 function handleLogin(req, res) {
-  res.render('login');
+  login(req, res);  
 }

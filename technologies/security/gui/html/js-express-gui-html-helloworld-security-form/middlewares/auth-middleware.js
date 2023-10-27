@@ -1,35 +1,33 @@
 const db = '[{"username": "user", "password": "user123", "roles": ["USER"]}, {"username": "admin", "password": "admin123", "roles": ["USER", "ADMIN"]}]'
 
+const login = (req, res) => {
+
+    let username = req.body.username;
+	let password = req.body.password;
+
+    const roles = getRolesByUsernameAndPassword(username, password)
+
+    if ( roles != null ) {
+        req.session.roles = roles;
+		req.session.username = username;
+        res.redirect("/");
+    } else {
+        res.redirect('/401');
+    }
+
+}
+
 const authPage = (permissions) => {
 
     return (req, res, next) => {
-        
-        if(!req.get('Authorization')){
 
-            var err = new Error('Not Authenticated!')
-            res.status(401).set('WWW-Authenticate', 'Basic')
-            next(err)
-
+        const roles = req.session.roles;
+        const found = ( roles == null) ? false : permissions.some(r=> roles.includes(r));
+        if ( !found ) {
+            res.redirect('/401')
         } else {
-
-            var credentials = Buffer.from(req.get('Authorization').split(' ')[1], 'base64')
-            .toString()
-            .split(':')
-
-            var username = credentials[0]
-            var password = credentials[1]
-
-            const roles = getRolesByUsernameAndPassword(username, password)
-            const found = ( roles == null) ? false : permissions.some(r=> roles.includes(r))
-
-            if ( !found ) {
-                res.redirect('/401')
-                // next()
-            } else {
-                next()
-            } 
-
-        }               
+            next()
+        }         
 
     }
 
@@ -45,4 +43,4 @@ function getRolesByUsernameAndPassword(username, password) {
 
 }
 
-module.exports = { authPage };
+module.exports = { login, authPage };
