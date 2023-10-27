@@ -1,33 +1,35 @@
 const express = require('express');
-const path = require('path');
+const bodyParser = require('body-parser');
 const { authPage } = require('./middlewares/auth-middleware');
 const port = 3000;
 
 const app = express();
-app.use("/static", express.static(path.resolve(__dirname, "frontend", "static")))
+app.use(express.static('static'));
+app.set('view engine', 'ejs');
+app.use(bodyParser.urlencoded({extended:true}));
 
 app.get("/", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "frontend/html", "index.html"));
+  res.render('index')
 })
 
 app.get("/public", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "frontend/html", "public.html"));
+  res.render('public')
 })
 
 app.get("/user", authPage(["USER", "ADMIN"]), (req, res) => {
-  res.sendFile(path.resolve(__dirname, "frontend/html", "user.html"));
+  res.render('user')
 })
 
 app.get("/admin", authPage(["ADMIN"]), (req, res) => {
-  res.sendFile(path.resolve(__dirname, "frontend/html", "admin.html"));
+  res.render('admin')
 })
 
 app.get("/401", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "frontend/html", "401.html"));
+  res.render('401')
 })
 
 app.all("*", (req, res) => {
-  res.sendFile(path.resolve("frontend/html", "404.html"));
+  res.render('404')
 })
 
 app.listen(port, function(error) {
