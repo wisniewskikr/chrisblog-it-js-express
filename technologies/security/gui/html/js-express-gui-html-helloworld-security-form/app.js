@@ -1,4 +1,5 @@
 const express = require('express');
+const session = require('express-session');
 const bodyParser = require('body-parser');
 const { authPage } = require('./middlewares/auth-middleware');
 const port = 3000;
@@ -7,13 +8,22 @@ const app = express();
 app.use(express.static('static'));
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended:true}));
+app.use(session({
+	secret: 'secret',
+	resave: true,
+	saveUninitialized: true
+}));
 
 app.get("/", (req, res) => {
   res.render('index')
 })
 
 app.get("/login", (req, res) => {
-  res.render('login')
+  displayLogin(req, res);
+})
+
+app.post("/login", (req, res) => {
+  handleLogin(req, res);
 })
 
 app.get("/public", (req, res) => {
@@ -43,3 +53,13 @@ app.listen(port, function(error) {
     console.log('Server is listening on port ' + port)
   }
 });
+
+// ***** HELP METHODS ***** //
+
+function displayLogin(req, res) {
+  res.render('login');
+}
+
+function handleLogin(req, res) {
+  res.render('login');
+}
