@@ -11,12 +11,6 @@ app.use(express.static('static'));
 app.set('view engine', 'ejs');
 
 // API //
-app.get("/api/v1/messages", (req, res) => {
-  messagesApi.handleReadAll(res);
-})
-app.get("/api/v1/messages/*", (req, res) => {
-  messagesApi.handleRead(req, res);
-})
 app.put("/api/v1/messages", (req, res) => {
   messagesApi.handleUpdate(req, res);
 })
@@ -26,11 +20,10 @@ app.delete("/api/v1/messages/*", (req, res) => {
 
 // GUI //
 app.get("/", (req, res) => {
-  res.locals.messages = messagesService.getAll();
-  res.render('list')
+  list(req, res);
 })
 app.get("/view", (req, res) => {
-  res.render('view')
+  view(req, res);
 })
 app.get("/create", (req, res) => {
   res.render('create')
@@ -57,6 +50,29 @@ app.listen(port, function(error) {
 });
 
 // ***** HELP METHODS ***** //
+
+function list(req, res) {
+  res.locals.messages = messagesService.getAll();
+  res.render('list');
+}
+
+function view(req, res) {
+
+  const messageId = req.query.id;
+  if (isNaN(messageId)) {
+    res.render('404');
+    return;
+  }
+
+  const message = messagesService.getById(messageId);
+  if (message == null) {
+    res.render('404');
+    return;
+  }
+
+  res.locals.message = message;
+  res.render('view');
+}
 
 function create(req, res) {
   messagesService.add(req.body);
