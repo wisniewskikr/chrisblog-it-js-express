@@ -11,9 +11,6 @@ app.use(express.static('static'));
 app.set('view engine', 'ejs');
 
 // API //
-app.put("/api/v1/messages", (req, res) => {
-  messagesApi.handleUpdate(req, res);
-})
 app.delete("/api/v1/messages/*", (req, res) => {
   messagesApi.handleDelete(req, res);
 })
@@ -32,7 +29,10 @@ app.post("/create", (req, res) => {
   createHandle(req, res);
 })
 app.get("/update", (req, res) => {
-  res.render('update')
+  updateDisplay(req, res);
+})
+app.post("/update", (req, res) => {
+  updateHandle(req, res);
 })
 app.get("/delete", (req, res) => {
   res.render('delete')
@@ -80,5 +80,30 @@ function createDisplay(req, res) {
 
 function createHandle(req, res) {
   messagesService.add(req.body);
+  res.redirect('/');
+}
+
+function updateDisplay(req, res) {
+
+  const messageId = req.query.id;
+  if (isNaN(messageId)) {
+    res.render('404');
+    return;
+  }
+
+  const message = messagesService.getById(messageId);
+  if (message == null) {
+    res.render('404');
+    return;
+  }
+
+  res.locals.message = message;
+
+  res.render('update');
+
+}
+
+function updateHandle(req, res) {
+  messagesService.update(req.body);
   res.redirect('/');
 }

@@ -1,13 +1,7 @@
 const Info = require('../models/info')
 const messagesService = require('../services/messages-service');
 
-module.exports = {    
-    handleUpdate: function (req, res) {
-
-        messagesService.update(req.body);
-        displayMessage(null, res, 200);
-
-    },
+module.exports = {        
     handleDelete: function (req, res) {
 
         const messageId = parseInt(req.url.substring(req.url.lastIndexOf('/') + 1));
