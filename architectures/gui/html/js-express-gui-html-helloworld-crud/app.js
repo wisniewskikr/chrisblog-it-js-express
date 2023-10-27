@@ -1,6 +1,5 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const messagesApi = require('./apis/messages-api');
 const messagesService = require('./services/messages-service');
 const port = 3000;
 
@@ -10,12 +9,6 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static('static'));
 app.set('view engine', 'ejs');
 
-// API //
-app.delete("/api/v1/messages/*", (req, res) => {
-  messagesApi.handleDelete(req, res);
-})
-
-// GUI //
 app.get("/", (req, res) => {
   list(req, res);
 })
@@ -35,7 +28,10 @@ app.post("/update", (req, res) => {
   updateHandle(req, res);
 })
 app.get("/delete", (req, res) => {
-  res.render('delete')
+  deleteDisplay(req, res);
+})
+app.post("/delete", (req, res) => {
+  deleteHandle(req, res);
 })
 app.all("*", (req, res) => {
   res.render('404')
@@ -106,4 +102,37 @@ function updateDisplay(req, res) {
 function updateHandle(req, res) {
   messagesService.update(req.body);
   res.redirect('/');
+}
+
+function deleteDisplay(req, res) {
+
+  const messageId = req.query.id;
+  if (isNaN(messageId)) {
+    res.render('404');
+    return;
+  }
+
+  const message = messagesService.getById(messageId);
+  if (message == null) {
+    res.render('404');
+    return;
+  }
+
+  res.locals.message = message;
+
+  res.render('delete');
+
+}
+
+function deleteHandle(req, res) {
+
+  const messageId = req.body.id;
+  if (isNaN(messageId)) {
+    res.render('404');
+    return;
+  }
+
+  messagesService.delete(messageId);
+  res.redirect('/');
+
 }

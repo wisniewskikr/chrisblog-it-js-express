@@ -4,21 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Delete Message</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="/js/delete.js"></script>
+    
 </head>
 <body>
     <h4>Delete Message</h4>
-    <table>
-        <tr>
-            <td><label for="id">Message Id</label></td>
-            <td><input type="text" id="id" disabled/></td>
-        </tr>
-        <tr>
-            <td><label for="text">Message Text</label></td>
-            <td><input type="text" id="text" disabled/></td>
-        </tr>
-    </table>
+
+    <form method="POST">
+        <input type="hidden" name="id" value="<%= message.id %>"/>
+        <table>
+            <tr>
+                <td><label for="id-disabled">Message Id</label></td>
+                <td><input type="text" id="id-disabled" name="id-disabled" value="<%= message.id %>" disabled/></td>
+            </tr>
+            <tr>
+                <td><label for="text-disabled">Message Text</label></td>
+                <td><input type="text" id="text-disabled" name="text-disabled" value="<%= message.text %>" disabled/></td>
+            </tr>
+        </table>
+    </form>
 
     <div>
         <a href="#" id="delete-link">Delete</a>
@@ -26,3 +29,5 @@
     </div>
 </body>
 </html>
+
+<script src="/js/delete.js"></script>
