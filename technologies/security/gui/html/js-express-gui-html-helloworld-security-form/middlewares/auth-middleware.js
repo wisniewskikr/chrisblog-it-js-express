@@ -10,10 +10,18 @@ const login = (req, res) => {
     if ( roles != null ) {
         req.session.roles = roles;
 		req.session.username = username;
+        res.locals.username = username;
         res.redirect("/");
     } else {
         res.redirect('/401');
     }
+
+}
+
+const logout = (req, res) => {
+
+    req.session.roles = null;
+	req.session.username = null;
 
 }
 
@@ -25,7 +33,7 @@ const authPage = (permissions) => {
         const found = ( roles == null) ? false : permissions.some(r=> roles.includes(r));
         if ( !found ) {
             res.redirect('/401')
-        } else {
+        } else {            
             next()
         }         
 
@@ -43,4 +51,4 @@ function getRolesByUsernameAndPassword(username, password) {
 
 }
 
-module.exports = { login, authPage };
+module.exports = { login, logout, authPage };

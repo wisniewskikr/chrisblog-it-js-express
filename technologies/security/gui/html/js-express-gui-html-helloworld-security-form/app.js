@@ -1,7 +1,7 @@
 const express = require('express');
 const session = require('express-session');
 const bodyParser = require('body-parser');
-const { login, authPage } = require('./middlewares/auth-middleware');
+const { login, logout, authPage } = require('./middlewares/auth-middleware');
 const port = 3000;
 
 const app = express();
@@ -20,6 +20,10 @@ app.get("/", (req, res) => {
 
 app.get("/login", (req, res) => {
   displayLogin(req, res);
+})
+
+app.get("/logout", (req, res) => {
+  handleLogout(req, res);
 })
 
 app.post("/login", (req, res) => {
@@ -62,4 +66,8 @@ function displayLogin(req, res) {
 
 function handleLogin(req, res) {
   login(req, res);  
+}
+
+function handleLogout(req, res) {
+  logout(req, res);  
 }

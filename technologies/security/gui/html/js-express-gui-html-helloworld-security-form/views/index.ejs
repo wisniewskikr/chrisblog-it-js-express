@@ -5,8 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Index</title>
 </head>
-<body>
-    <div><a href="/login">Login</a></div>
+<body>    
+    <% if ( typeof username == 'undefined' || username == null ) { %>
+        </p><a href="/login">Login</a>        
+    <% } else { %>
+    <div>
+        <p></p><a href="/logout">Logout</a></p>
+        <p>Username: <%= username %> </p>
+    </div>
+    <% } %>
     <div>Project Pages:</div>
     <ul>
         <li><a href="/public">Public Page (Not Secured)</a></li>
