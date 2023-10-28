@@ -7,11 +7,13 @@
 </head>
 <body>    
     <% if ( typeof username == 'undefined' || username == null ) { %>
-        </p><a href="/login">Login</a>        
+    <div>
+        </span><a href="/login">Login</a></span>        
+    </div>
     <% } else { %>
     <div>
-        <p>Username: <%= username %> </p>
-        <p><a href="/logout">Logout</a></p>        
+        <span>Username: <%= username %> </span>
+        <span><a href="/logout">Logout</a></span>        
     </div>
     <% } %>
     <div>Project Pages:</div>
