@@ -9,8 +9,7 @@ const login = (req, res) => {
 
     if ( roles != null ) {
         req.session.roles = roles;
-		req.session.username = username;
-        res.locals.username = username;
+		req.session.username = username;       
         res.redirect("/");
     } else {
         res.redirect('/401');
@@ -22,6 +21,7 @@ const logout = (req, res) => {
 
     req.session.roles = null;
 	req.session.username = null;
+    res.redirect("/");
 
 }
 

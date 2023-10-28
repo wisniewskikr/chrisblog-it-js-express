@@ -15,6 +15,7 @@ app.use(session({
 }));
 
 app.get("/", (req, res) => {
+  res.locals.username = req.session.username;
   res.render('index')
 })
 
