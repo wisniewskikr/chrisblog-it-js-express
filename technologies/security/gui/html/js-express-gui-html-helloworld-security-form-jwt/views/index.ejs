@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+</head>
+<body>    
+    <% if ( typeof username == 'undefined' || username == null ) { %>
+    <div>
+        </span><a href="/login">Login</a></span>        
+    </div>
+    <% } else { %>
+    <div>
+        <span><a href="/logout">Logout</a></span>
+        <span>Username: <%= username %> </span>                
+    </div>
+    <% } %>
+    </br>
+    <div>Project Pages:</div>
+    <ul>
+        <li><a href="/public">Public Page (Not Secured)</a></li>
+        <li><a href="/user">User Page (available for USER and ADMIN roles)</a></li>
+        <li><a href="/admin">Admin Page (available for ADMIN role)</a></li>
+    </ul>
+</body>
+</html>
