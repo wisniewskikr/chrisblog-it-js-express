@@ -1,21 +1,16 @@
 const express = require('express');
-const session = require('express-session');
 const bodyParser = require('body-parser');
-const { login, logout, authPage } = require('./middlewares/auth-middleware');
+const cookieParser = require('cookie-parser');
+const { login, logout, authPage, handleUsername } = require('./middlewares/auth-middleware');
 const port = 3000;
 
 const app = express();
 app.use(express.static('static'));
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended:true}));
-app.use(session({
-	secret: 'secret',
-	resave: true,
-	saveUninitialized: true
-}));
+app.use(cookieParser());
 
-app.get("/", (req, res) => {
-  res.locals.username = req.session.username;
+app.get("/", handleUsername, (req, res) => {
   res.render('index')
 })
 
@@ -23,12 +18,12 @@ app.get("/login", (req, res) => {
   displayLogin(req, res);
 })
 
-app.get("/logout", (req, res) => {
-  handleLogout(req, res);
-})
-
 app.post("/login", (req, res) => {
   handleLogin(req, res);
+})
+
+app.get("/logout", (req, res) => {
+  handleLogout(req, res);
 })
 
 app.get("/public", (req, res) => {
@@ -62,7 +57,14 @@ app.listen(port, function(error) {
 // ***** HELP METHODS ***** //
 
 function displayLogin(req, res) {
-  res.locals.error = req.session.error
+  
+  if ( typeof req.cookies.error == 'undefined') {
+    res.locals.error = null;
+  } else {
+    res.locals.error = req.cookies.error;
+    res.cookie('error', '', { maxAge: 1 });
+  }
+  
   res.render('login');
 }
 
