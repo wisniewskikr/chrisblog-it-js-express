@@ -12,7 +12,8 @@ const login = (req, res) => {
 		req.session.username = username;       
         res.redirect("/");
     } else {
-        res.redirect('/401');
+        req.session.error = 'Wrong username or password';
+        res.redirect('/login');
     }
 
 }

@@ -33,7 +33,10 @@
                     <div><a href="/">Back</a></div>
                 </td>
             </tr>
-        </table>        
+        </table>
+        <% if ( error ) { %>
+            <div style="color: red;"> <%= error %> </div>
+        <% } %>        
     </form>
 </body>
 </html>

@@ -62,6 +62,7 @@ app.listen(port, function(error) {
 // ***** HELP METHODS ***** //
 
 function displayLogin(req, res) {
+  res.locals.error = req.session.error
   res.render('login');
 }
 
