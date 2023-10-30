@@ -9,3 +9,14 @@ const pool = mysql.createPool({
   password: process.env.MYSQL_PASSWORD,
   database: process.env.MYSQL_DATABASE
 }).promise()
+
+async function createMessage(message) {
+  const [result] = await pool.query(`
+  INSERT INTO helloworld (message)
+  VALUES (?)
+  `, [message])
+  return result.insertId
+}
+
+const id = await createMessage("Hello World");
+console.log("id: " + id);

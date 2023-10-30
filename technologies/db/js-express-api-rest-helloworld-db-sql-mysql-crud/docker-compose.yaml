@@ -7,13 +7,13 @@ services:
     container_name: mysql-container
     environment:
       MYSQL_ROOT_PASSWORD: my_secret_password
-      MYSQL_DATABASE: helloworld
+      MYSQL_DATABASE: helloworld-db
       MYSQL_USER: admin
       MYSQL_PASSWORD: admin123
     ports:
       - "3306:3306"
-#    volumes:
-#      - dbdata:/var/lib/mysql
+    volumes:
+      - "./scripts/schema.sql:/docker-entrypoint-initdb.d/1.sql"
 
   pma:
     image: phpmyadmin/phpmyadmin:5.2.1
