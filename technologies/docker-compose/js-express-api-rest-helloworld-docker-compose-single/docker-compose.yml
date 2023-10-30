@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  helloworld:
+    image: js-express-api-rest-helloworld-docker-compose-single-image
+    container_name: js-express-api-rest-helloworld-docker-compose-single-container
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    networks:
+      - helloworld-network
+
+networks:
+  helloworld-network:
+    name: helloworld-network-name
