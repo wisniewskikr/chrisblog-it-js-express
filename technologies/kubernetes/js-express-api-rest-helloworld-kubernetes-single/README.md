@@ -1,7 +1,9 @@
 USAGE COMMANDS
 --------------
 
-> Please be aware that following tools should be installed on your local PC: **Docker**. Docker tool has to be **up and running**.
+> Please be aware that following tools should be installed on your local PC: **Minikube**.
+
+> Please be aware that Kubernetes requres that **image is deployed on some Docker repository**. This example uses following image: `https://hub.docker.com/repository/docker/wisniewskikr/js-express-api-rest-helloworld-docker-single-image/general` 
 
 > Please **clone/download** project, open **project's main folder** in your favorite **command line tool** and then **proceed with steps below**. 
 
@@ -75,4 +77,4 @@ PUSH IMAGES
 > Please be aware that these steps requre created **Docker Hub** account in advence.
 
 1. In a command line tool build Docker image with `docker build -t wisniewskikr/js-express-api-rest-helloworld-docker-single-image .`
-1. In a command line tool push Docker image with `docker push wisniewskikr/js-express-api-rest-helloworld-docker-single-image .`
+1. In a command line tool push Docker image with `docker push wisniewskikr/js-express-api-rest-helloworld-docker-single-image`
