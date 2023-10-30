@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: helloworld-deployment
+  labels:
+    app: helloworld-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: helloworld-container
+  template:
+    metadata:
+      labels:
+        app: helloworld-container
+    spec:
+      containers:
+      - name: helloworld-container
+        image: wisniewskikr/js-express-api-rest-helloworld-docker-single-image
+        ports:
+        - containerPort: 3000
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: helloworld-service
+spec:
+  type: NodePort
+  selector:
+    app: helloworld-container
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
+      nodePort: 31000
