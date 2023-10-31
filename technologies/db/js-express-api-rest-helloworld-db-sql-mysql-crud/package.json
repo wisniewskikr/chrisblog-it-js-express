@@ -2,6 +2,7 @@
   "name": "js-express-api-rest-helloworld-db-sql-mysql-crud",
   "version": "1.0.0",
   "description": "USAGE COMMANDS\r --------------",
+  "type": "module",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

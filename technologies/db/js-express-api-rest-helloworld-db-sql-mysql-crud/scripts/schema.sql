@@ -1,6 +1,6 @@
-USE helloworld-db;
+USE helloworld;
 
-CREATE TABLE helloworld (
-  id integer PRIMARY KEY AUTO_INCREMENT,
-  message VARCHAR(255) NOT NULL
+CREATE TABLE messages (
+  id integer NOT NULL,
+  text VARCHAR(255) NOT NULL
 );

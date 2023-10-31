@@ -7,7 +7,7 @@ services:
     container_name: mysql-container
     environment:
       MYSQL_ROOT_PASSWORD: my_secret_password
-      MYSQL_DATABASE: helloworld-db
+      MYSQL_DATABASE: helloworld
       MYSQL_USER: admin
       MYSQL_PASSWORD: admin123
     ports:
