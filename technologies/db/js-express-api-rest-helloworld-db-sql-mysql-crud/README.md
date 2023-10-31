@@ -1,11 +1,14 @@
 USAGE COMMANDS
 --------------
 
-> Please be aware that following tools should be installed in advance on your computer: **node.js**. 
+> Please be aware that following tools should be installed in advance on your computer: **node.js** and **Docker**. 
 
 > Please **clone/download** project, open **project's main folder** in your favorite **command line tool** and then **proceed with steps below**. 
 
 Usage steps:
+1. Start database and database console with `docker-compose up -d`
+1. (Optional) In a command line tool check database and console status with `docker ps -a`
+1. (Optional) In a browser check database status in a console (server: "mysql", username: "admin", password: "admin123") with `http://localhost:8081`
 1. In a command line tool install nmp packages with `npm install`
 1. In a command line tool start application with `node app.js`
 1. In a http client (e.g. Postman) use **POST** method and visit `http://localhost:3000/api/v1/messages`
@@ -52,6 +55,7 @@ Usage steps:
    * Expected **empty table**
 1. Clean up environment 
      * In a command line tool stop application with `ctrl + C`
+     * In a command line tool stop database and database console with `docker-compose down`
 
 
 USAGE IMAGES
@@ -74,7 +78,7 @@ DESCRIPTION
 -----------
 
 ##### Goal
-The goal of this project is to present how to implement **CRUD** (Create, Read, Update, Delete) operations in an application type **API REST** in **JavaScript** programming language with usage **express** framework. This application enables adding, reading, updating and deleting messages.
+The goal of this project is to present how to implement **CRUD** (Create, Read, Update, Delete) operations in an application type **API REST** in **JavaScript** programming language with usage **express** framework and **MySQL** database. This application enables adding, reading, updating and deleting messages from database. User is also able to check database status in **phpmyadmin** database console.
 
 ##### Terminology
 Terminology explanation:
