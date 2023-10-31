@@ -5,49 +5,12 @@ const port = 3000;
 const app = express();
 app.use(express.json());
 
-app.get("/api/v1/messages", (req, res) => {
-  handleReadAll(res);
-})
-
-app.get("/api/v1/messages/*", (req, res) => {
-  handleRead(req, res);
-})
-
-app.post("/api/v1/messages", (req, res) => {
-  handleCreate(req, res);
-})
-
-app.put("/api/v1/messages", (req, res) => {
-  handleUpdate(req, res);
-})
-
-app.delete("/api/v1/messages/*", (req, res) => {
-  handleDelete(req, res); 
-})
-
-app.all("*", (req, res) => {
-  const json = JSON.parse('{"message": "Error: Resource Not Found. Please use following API path: /api/v1/messages"}')
-  displayMessage(json, res, 404);
-})
-
-app.listen(port, function(error) {
-  if (error) {
-    console.log('Something went wrong', error)
-  } else {
-    console.log('Server is listening on port ' + port)
-  }
-});
-
-// ***** HELP METHODS ***** //
-
-function handleReadAll(res) {
-  
-  let messages = getAll();
+app.get("/api/v1/messages", async (req, res) => {
+  const messages = await getAll();
   displayMessage(messages, res, 200);
+})
 
-}
-
-function handleRead(req, res) {
+app.get("/api/v1/messages/*", async (req, res) => {
 
   const messageId = parseInt(req.url.substring(req.url.lastIndexOf('/') + 1));
   if (isNaN(messageId)) {
@@ -56,7 +19,7 @@ function handleRead(req, res) {
     return;
   }
 
-  const message = getById(messageId);
+  const message = await getById(messageId);
   if (message == null) {
     const json = JSON.parse('{"message": "Specific Message Not Found"}')
     displayMessage(json, res, 200);
@@ -65,25 +28,25 @@ function handleRead(req, res) {
 
   displayMessage(message, res, 200);
 
-}
+})
 
-function handleCreate(req, res) {
-
-  add(req.body);
+app.post("/api/v1/messages", async (req, res) => {
+  
+  await add(req.body);
   const json = JSON.parse('{"message": "New Message was added"}')
-  displayMessage(json, res, 200); 
+  displayMessage(json, res, 200);
 
-}
+})
 
-function handleUpdate(req, res) {    
-
-  update(req.body);
+app.put("/api/v1/messages", async (req, res) => {
+  
+  await update(req.body);
   const json = JSON.parse('{"message": "Message was updated"}')
   displayMessage(json, res, 200);
 
-}
+})
 
-function handleDelete(req, res) {
+app.delete("/api/v1/messages/*", async (req, res) => {
   
   const messageId = parseInt(req.url.substring(req.url.lastIndexOf('/') + 1));
   if (isNaN(messageId)) {
@@ -99,11 +62,24 @@ function handleDelete(req, res) {
     return; 
   }
 
-  deleteById(messageId);
+  await deleteById(messageId);
   const json = JSON.parse('{"message": "Message was deleted"}')
   displayMessage(json, res, 200); 
 
-}
+})
+
+app.all("*", (req, res) => {
+  const json = JSON.parse('{"message": "Error: Resource Not Found. Please use following API path: /api/v1/messages"}')
+  displayMessage(json, res, 404);
+})
+
+app.listen(port, function(error) {
+  if (error) {
+    console.log('Something went wrong', error)
+  } else {
+    console.log('Server is listening on port ' + port)
+  }
+});
 
 function displayMessage(json, res, statusCode) {
 
