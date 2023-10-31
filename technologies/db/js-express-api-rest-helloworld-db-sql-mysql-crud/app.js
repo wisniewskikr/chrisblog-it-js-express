@@ -10,9 +10,9 @@ app.get("/api/v1/messages", async (req, res) => {
   displayMessage(messages, res, 200);
 })
 
-app.get("/api/v1/messages/*", async (req, res) => {
+app.get("/api/v1/messages/:id", async (req, res) => {
 
-  const messageId = parseInt(req.url.substring(req.url.lastIndexOf('/') + 1));
+  const messageId = req.params.id
   if (isNaN(messageId)) {
     const json = JSON.parse('{"message": "Specific ID Not Found"}')
     displayMessage(json, res, 200);
@@ -46,9 +46,9 @@ app.put("/api/v1/messages", async (req, res) => {
 
 })
 
-app.delete("/api/v1/messages/*", async (req, res) => {
+app.delete("/api/v1/messages/:id", async (req, res) => {
   
-  const messageId = parseInt(req.url.substring(req.url.lastIndexOf('/') + 1));
+  const messageId = req.params.id
   if (isNaN(messageId)) {
     const json = JSON.parse('{"message": "Specific ID Not Found"}')
     displayMessage(json, res, 200);
