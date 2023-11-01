@@ -10,7 +10,7 @@ app.get("/api/v1/messages", (req, res) => {
   handleReadAll(res);
 })
 
-app.get("/api/v1/messages/*", (req, res) => {
+app.get("/api/v1/messages/:id", (req, res) => {
   handleRead(req, res);
 })
 
@@ -22,7 +22,7 @@ app.put("/api/v1/messages", (req, res) => {
   handleUpdate(req, res);
 })
 
-app.delete("/api/v1/messages/*", (req, res) => {
+app.delete("/api/v1/messages/:id", (req, res) => {
   handleDelete(req, res); 
 })
 
@@ -49,7 +49,7 @@ function handleReadAll(res) {
 
 function handleRead(req, res) {
 
-  const messageId = parseInt(req.url.substring(req.url.lastIndexOf('/') + 1));
+  const messageId = req.params.id
   if (isNaN(messageId)) {
     displayMessage(new Info('Specific ID Not Found'), res, 200);
     return;
@@ -81,7 +81,7 @@ function handleUpdate(req, res) {
 
 function handleDelete(req, res) {
   
-  const messageId = parseInt(req.url.substring(req.url.lastIndexOf('/') + 1));
+  const messageId = req.params.id
   if (isNaN(messageId)) {
     displayMessage(new Info('Specific ID Not Found'), res, 200);
     return;
