@@ -1,6 +1,6 @@
 USE helloworld;
 
 CREATE TABLE messages (
-  id integer NOT NULL,
+  id integer PRIMARY KEY AUTO_INCREMENT,
   text VARCHAR(255) NOT NULL
 );

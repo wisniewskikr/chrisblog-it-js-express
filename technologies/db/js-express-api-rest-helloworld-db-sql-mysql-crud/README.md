@@ -15,7 +15,6 @@ Usage steps:
    * Choose **Body -> raw -> JSON** and add following JSON:
    ```
    {
-    "id": 1,
     "text": "Hello World 1"
    }
    ```

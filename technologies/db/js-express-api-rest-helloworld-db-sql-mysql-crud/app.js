@@ -1,5 +1,5 @@
 import express from 'express';
-import { getAll, getById, add, update, deleteById } from './services/messages-service.js';
+import { getAll, getById, create, update, deleteById } from './services/messages-service.js';
 const port = 3000;
 
 const app = express();
@@ -32,7 +32,7 @@ app.get("/api/v1/messages/:id", async (req, res) => {
 
 app.post("/api/v1/messages", async (req, res) => {
   
-  await add(req.body);
+  await create(req.body.text);
   const json = JSON.parse('{"message": "New Message was added"}')
   displayMessage(json, res, 200);
 

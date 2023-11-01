@@ -23,11 +23,12 @@ export async function getById(id) {
   return rows[0];
 }
 
-export async function add(message) {
-  await pool.query(`
-  INSERT INTO messages (id, text)
-  VALUES (?, ?)
-  `, [message.id, message.text])
+export async function create(text) {
+  const [result] = await pool.query(`
+  INSERT INTO messages (text)
+  VALUES (?)
+  `, [text])
+  return result.insertId
 }
 
 export async function update(message) {
