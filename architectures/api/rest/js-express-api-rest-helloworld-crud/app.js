@@ -69,7 +69,7 @@ function handleRead(req, res) {
 
 function handleCreate(req, res) {
 
-  messagesService.add(req.body);
+  messagesService.create(req.body.text);
   const json = JSON.parse('{"message": "New Message was added"}')
   displayMessage(json, res, 200); 
 
