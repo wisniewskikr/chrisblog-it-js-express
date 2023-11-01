@@ -1,5 +1,4 @@
 const express = require('express');
-const Info = require('./models/info')
 const messagesService = require('./services/messages-service');
 const port = 3000;
 
@@ -27,7 +26,8 @@ app.delete("/api/v1/messages/:id", (req, res) => {
 })
 
 app.all("*", (req, res) => {
-  displayMessage(new Info('Error: Resource Not Found. Please use following API path: /api/v1/messages'), res, 404);
+  const json = JSON.parse('{"message": "Error: Resource Not Found. Please use following API path: /api/v1/messages"}')
+  displayMessage(json, res, 404);
 })
 
 app.listen(port, function(error) {
@@ -51,13 +51,15 @@ function handleRead(req, res) {
 
   const messageId = req.params.id
   if (isNaN(messageId)) {
-    displayMessage(new Info('Specific ID Not Found'), res, 200);
+    const json = JSON.parse('{"message": "Specific ID Not Found"}')
+    displayMessage(json, res, 200);
     return;
   }
 
   const message = messagesService.getById(messageId);
   if (message == null) {
-    displayMessage(new Info('Specific Message Not Found'), res, 200);
+    const json = JSON.parse('{"message": "Specific Message Not Found"}')
+    displayMessage(json, res, 200);
     return;
   }
 
@@ -68,14 +70,16 @@ function handleRead(req, res) {
 function handleCreate(req, res) {
 
   messagesService.add(req.body);
-  displayMessage(new Info('New Message was added'), res, 200); 
+  const json = JSON.parse('{"message": "New Message was added"}')
+  displayMessage(json, res, 200); 
 
 }
 
 function handleUpdate(req, res) {    
 
   messagesService.update(req.body);
-  displayMessage(new Info('Message was updated'), res, 200);
+  const json = JSON.parse('{"message": "Message was updated"}')
+  displayMessage(json, res, 200);
 
 }
 
@@ -83,18 +87,21 @@ function handleDelete(req, res) {
   
   const messageId = req.params.id
   if (isNaN(messageId)) {
-    displayMessage(new Info('Specific ID Not Found'), res, 200);
+    const json = JSON.parse('{"message": "Specific ID Not Found"}')
+    displayMessage(json, res, 200);
     return;
   }
 
   const messageCurrent = messagesService.getById(messageId);
   if (!messageCurrent) {
-    displayMessage(new Info('Specific Message Not Found'), res, 200);
+    const json = JSON.parse('{"message": "Specific Message Not Found"}')
+    displayMessage(json, res, 200);
     return; 
   }
 
   messagesService.delete(messageId);
-  displayMessage(new Info('Message was deleted'), res, 200); 
+  const json = JSON.parse('{"message": "Message was deleted"}')
+  displayMessage(json, res, 200); 
 
 }
 
