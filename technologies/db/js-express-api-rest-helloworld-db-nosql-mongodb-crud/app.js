@@ -1,12 +1,14 @@
 const express = require('express')
 const dotenv = require('dotenv')
 const mongoose = require('mongoose')
+const messagesRouter = require('./routes/messages')
 
 const app = express()
 app.use(express.json())
+app.use('/api/v1/messages', messagesRouter)
 dotenv.config()
 
-mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true })
+mongoose.connect(process.env.DATABASE_URL)
 const db = mongoose.connection
 db.on('error', (error) => console.error(error))
 db.once('open', () => console.log('Connected to Database'))
