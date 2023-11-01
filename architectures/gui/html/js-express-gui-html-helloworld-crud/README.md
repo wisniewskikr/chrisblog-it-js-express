@@ -12,7 +12,7 @@ Usage steps:
    * Expected **List Messages** page with empty list
 1. In a html browser (e.g. Chrome) on **List Messages** page click `Create` link
    * Expected **Create Message** page
-1. In a html browser (e.g. Chrome) on **Create Message** page fill **Message Id** as "1" and **Message Text** as "Hello World 1" and click `Create` link
+1. In a html browser (e.g. Chrome) on **Create Message** page fill **Message Text** as "Hello World 1" and click `Create` link
    * Expected **List Messages** page with one item
 1. In a html browser (e.g. Chrome) on **List Messages** page check item and click `View` link
    * Expected **View Message** page with message data

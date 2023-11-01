@@ -75,7 +75,7 @@ function createDisplay(req, res) {
 }
 
 function createHandle(req, res) {
-  messagesService.add(req.body);
+  messagesService.create(req.body.text);
   res.redirect('/');
 }
 
