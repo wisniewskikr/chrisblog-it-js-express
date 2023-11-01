@@ -8,7 +8,7 @@ USAGE COMMANDS
 Usage steps:
 1. Start database and database console with `docker-compose up -d`
 1. (Optional) In a command line tool check database and console status with `docker ps -a`
-1. (Optional) In a browser check database status in a console (server: "mysql", username: "admin", password: "admin123") with `http://localhost:8081`
+1. (Optional) In a browser check data in MongoDB Express (admin/changeme) with `http://localhost:28081/`
 1. In a command line tool install nmp packages with `npm install`
 1. In a command line tool start application with `node app.js`
 1. In a http client (e.g. Postman) use **POST** method and visit `http://localhost:3000/api/v1/messages`
