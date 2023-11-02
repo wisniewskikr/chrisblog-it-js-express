@@ -77,7 +77,7 @@ DESCRIPTION
 -----------
 
 ##### Goal
-The goal of this project is to present how to implement **CRUD** (Create, Read, Update, Delete) operations in an application type **API REST** in **JavaScript** programming language with usage **express** framework and **MySQL** database. This application enables adding, reading, updating and deleting messages from database. User is also able to check database status in **phpmyadmin** database console.
+The goal of this project is to present how to implement **CRUD** (Create, Read, Update, Delete) operations in an application type **API REST** in **JavaScript** programming language with usage **express** framework and **MongoDB** no-sql database. This application enables adding, reading, updating and deleting messages from database. User is also able to check database status in **MongoDB Express** database console.
 
 ##### Terminology
 Terminology explanation:
