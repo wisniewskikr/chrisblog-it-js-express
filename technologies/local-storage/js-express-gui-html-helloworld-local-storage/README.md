@@ -9,11 +9,7 @@ Usage steps:
 1. In a command line tool install nmp packages with `npm install`
 1. In a command line tool start application with `node app.js`
 1. In a http browser (e.g. Chrome) visit `http://localhost:3000`
-   * Expected **Hello World** page with "Name" field
-1. In a http browser (e.g. Chrome) fill **name** (e.g. Chris) and click **Create** link
-   * Expected message **Hello World Chris!**
-1. In a http browser (e.g. Chrome) click **Back** link
-   * Expected message **Hello World** page with "Name" field
+   * Expected **Hello World!** text
 1. Clean up environment 
      * In a command line tool stop application with `ctrl + C`
 
@@ -23,17 +19,16 @@ USAGE IMAGES
 
 ![My Image](readme-images/image-01.png)
 
-![My Image](readme-images/image-02.png)
-
 
 DESCRIPTION
 -----------
 
 ##### Goal
-The goal of this project is to present how to create an **example** application type **GUI HTML** in **JavaScript** programming language with usage **express** framework and **ejs** template engine. This application consists of HTML page which includes following frontend elements: **html**, **javascript**, **css** and **images**.
+The goal of this project is to present how to use a **local storage** in application type **GUI HTML** in **JavaScript** programming language with usage **express** framework and **ejs** template engine. This application first stores message in the local storage and then reads this data from local storage and displays it to the user.
 
 ##### Terminology
 Terminology explanation:
+* **Local Storage**: it's a technology which enables to store some data in a browser. 
 * **JavaScript**: is a scripting or programming language that allows you to implement complex features on web pages or to implement web applications.
 * **GUI HTML**: it's an abbreviation for Graphical User Interface. It enables user to interact with application. GUI HTML means that user interacts with application via html web pag.
 * **Express framework**: Express.js is the most popular web framework for Node.js. It is designed for building web applications and APIs and has been called the de facto standard server framework for Node.js.
@@ -42,7 +37,7 @@ Terminology explanation:
 ##### Flow
 The following flow takes place in this project:
 1. User via any html browser sends request to application for the content.
-1. Application sends back response to user via html browser with message
+1. Application sends back response to user via html browser.
 
 ##### Launch
 To launch this application please make sure that the **Preconditions** are met and then follow instructions from **Usage** section.
