@@ -24,11 +24,11 @@ DESCRIPTION
 -----------
 
 ##### Goal
-The goal of this project is to present how to use a **local storage** in application type **GUI HTML** in **JavaScript** programming language with usage **express** framework and **ejs** template engine. This application first stores message in the local storage and then reads this data from local storage and displays it to the user.
+The goal of this project is to present how to use a **IndexedDb** in application type **GUI HTML** in **JavaScript** programming language with usage **express** framework and **ejs** template engine. This application first stores message in the IndexedDb and then reads this data from IndexedDb and displays it to the user.
 
 ##### Terminology
 Terminology explanation:
-* **Local Storage**: it's a technology which enables to store some data in a browser. 
+* **IndexedDb**: it's a technology which enables to store some data in noSql database in a browser. 
 * **JavaScript**: is a scripting or programming language that allows you to implement complex features on web pages or to implement web applications.
 * **GUI HTML**: it's an abbreviation for Graphical User Interface. It enables user to interact with application. GUI HTML means that user interacts with application via html web pag.
 * **Express framework**: Express.js is the most popular web framework for Node.js. It is designed for building web applications and APIs and has been called the de facto standard server framework for Node.js.
